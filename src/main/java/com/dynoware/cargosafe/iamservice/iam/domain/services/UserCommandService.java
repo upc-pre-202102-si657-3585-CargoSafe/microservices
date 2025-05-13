@@ -1,0 +1,13 @@
+package  com.dynoware.cargosafe.iamservice.iam.domain.services;
+
+import com.dynoware.cargosafe.iamservice.iam.domain.model.aggregates.User;
+import com.dynoware.cargosafe.iamservice.iam.domain.model.commands.SignInCommand;
+import com.dynoware.cargosafe.iamservice.iam.domain.model.commands.SignUpCommand;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
+import java.util.Optional;
+
+public interface UserCommandService {
+    Optional<User> handle(SignUpCommand command);
+    Optional<ImmutablePair<User, String>> handle(SignInCommand command);
+}
