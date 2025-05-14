@@ -3,6 +3,7 @@ package  com.dynoware.cargosafe.iamservice.iam.application.internal.queryservice
 import com.dynoware.cargosafe.iamservice.iam.domain.model.entities.Role;
 import com.dynoware.cargosafe.iamservice.iam.domain.model.queries.GetAllRolesQuery;
 import com.dynoware.cargosafe.iamservice.iam.domain.model.queries.GetRoleByNameQuery;
+import com.dynoware.cargosafe.iamservice.iam.domain.model.valueobjects.Roles;
 import com.dynoware.cargosafe.iamservice.iam.domain.services.RoleQueryService;
 import com.dynoware.cargosafe.iamservice.iam.infrastructure.persistence.jpa.repositories.RoleRepository;
 import org.springframework.stereotype.Service;
@@ -27,4 +28,6 @@ public class RoleQueryServiceImpl implements RoleQueryService {
     public Optional<Role> handle(GetRoleByNameQuery query) {
         return roleRepository.findByName(query.name());
     }
+
+
 }

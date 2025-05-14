@@ -5,7 +5,9 @@ import com.dynoware.cargosafe.iamservice.shared.domain.model.aggregates.Auditabl
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.List;
@@ -13,6 +15,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
+@Setter
 public class User extends AuditableAbstractAggregateRoot<User> {
 
     @Getter
@@ -27,7 +30,7 @@ public class User extends AuditableAbstractAggregateRoot<User> {
     private String password;
 
     @Getter
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
