@@ -45,9 +45,9 @@ public class IamContextFacadeImpl implements IamContextFacade {
     // inherited javadoc
     @Override
     public Long createUser(String username, String password) {
-        Role roles = roleQueryService.handle(new GetRoleByNameQuery(Roles.ROLE_USER))
-                .orElseThrow(() -> new IllegalArgumentException("Role not found"));
-        var signUpCommand = new SignUpCommand(username, password, List.of(roles));
+        Role role = roleQueryService.handle(new GetRoleByNameQuery(Roles.ROLE_USER))
+                .orElseGet(() -> new Role(Roles.ROLE_USER)); // fallback si no lo encuentra
+        var signUpCommand = new SignUpCommand(username, password, List.of(role));
 
         var result = userCommandService.handle(signUpCommand);
         if (result.isEmpty()) return 0L;
