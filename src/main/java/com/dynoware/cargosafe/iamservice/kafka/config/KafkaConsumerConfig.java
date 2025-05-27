@@ -17,19 +17,22 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
+
 @Configuration
 @EnableKafka
 public class KafkaConsumerConfig {
 
+    @Value("${spring.kafka.bootstrap-servers}")
+    private String bootstrapServers;
+
     @Bean
     public ConsumerFactory<String, Map<String, Object>> consumerFactory() {
         var props = new HashMap<String, Object>();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "iam-service-group");
 
-        // Envolvemos el JsonDeserializer en un ErrorHandlingDeserializer
-        JsonDeserializer<Map<String, Object>> jsonDeserializer =
-                new JsonDeserializer<>(Map.class);
+        JsonDeserializer<Map<String, Object>> jsonDeserializer = new JsonDeserializer<>(Map.class);
         jsonDeserializer.addTrustedPackages("*");
 
         ErrorHandlingDeserializer<Map<String, Object>> errorDeserializer =
@@ -41,6 +44,7 @@ public class KafkaConsumerConfig {
                 errorDeserializer
         );
     }
+
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, Map<String, Object>> kafkaListenerContainerFactory(
             ConsumerFactory<String, Map<String, Object>> consumerFactory) {
@@ -51,6 +55,5 @@ public class KafkaConsumerConfig {
         factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL);
         return factory;
     }
-
 }
 
