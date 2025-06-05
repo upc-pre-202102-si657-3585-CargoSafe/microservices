@@ -1,4 +1,4 @@
-package com.dynoware.cargosafe.trips.domain.model.commands;
+package com.dynoware.cargosafe.tripsservice.trips.domain.model.commands;
 
 import java.util.Date;
 

@@ -1,7 +1,7 @@
-package com.dynoware.cargosafe.trips.interfaces.rest.transform;
+package com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform;
 
-import com.dynoware.cargosafe.trips.domain.model.commands.CreateDriverCommand;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.CreateDriverResource;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.CreateDriverCommand;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.CreateDriverResource;
 
 public class CreateDriverCommandFromResourceAssembler {
 

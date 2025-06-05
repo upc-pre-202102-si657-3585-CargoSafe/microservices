@@ -1,4 +1,4 @@
-package com.dynoware.cargosafe.shared.domain.model.entities;
+package com.dynoware.cargosafe.tripsservice.shared.domain.model.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

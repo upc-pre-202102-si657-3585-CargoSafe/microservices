@@ -1,6 +1,6 @@
-package com.dynoware.cargosafe.trips.domain.model.aggregates;
+package com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates;
 
-import com.dynoware.cargosafe.trips.domain.model.commands.CreateOnGoingTripCommand;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.CreateOnGoingTripCommand;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -52,7 +52,7 @@ public class OnGoingTrip {
         this.longitude = longitude;
         this.speed = speed;
         this.distance = distance;
-        return  this;
+        return this;
     }
 
     public OnGoingTrip(Long id) {

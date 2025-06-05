@@ -1,8 +1,8 @@
-package com.dynoware.cargosafe.trips.domain.services;
+package com.dynoware.cargosafe.tripsservice.trips.domain.services;
 
-import com.dynoware.cargosafe.trips.domain.model.aggregates.Driver;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetAllDriversQuery;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetDriverByIdQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates.Driver;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetAllDriversQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetDriverByIdQuery;
 
 import java.util.List;
 import java.util.Optional;

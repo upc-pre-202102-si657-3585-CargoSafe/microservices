@@ -1,7 +1,7 @@
-package com.dynoware.cargosafe.trips.interfaces.rest.transform;
+package com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform;
 
-import com.dynoware.cargosafe.trips.domain.model.aggregates.Evidence;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.EvidenceResource;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates.Evidence;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.EvidenceResource;
 
 public class EvidenceResourceFromEntityAssembler {
     public static EvidenceResource transformResourceFromEntity(Evidence entity) {

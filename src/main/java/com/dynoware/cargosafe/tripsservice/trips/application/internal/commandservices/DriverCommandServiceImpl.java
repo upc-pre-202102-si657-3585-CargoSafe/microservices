@@ -1,12 +1,12 @@
-package com.dynoware.cargosafe.trips.application.internal.commandservices;
+package com.dynoware.cargosafe.tripsservice.trips.application.internal.commandservices;
 
-import com.dynoware.cargosafe.kafka.producer.TripsKafkaProducer;
-import com.dynoware.cargosafe.trips.domain.model.aggregates.Driver;
-import com.dynoware.cargosafe.trips.domain.model.commands.CreateDriverCommand;
-import com.dynoware.cargosafe.trips.domain.model.commands.DeleteDriverCommand;
-import com.dynoware.cargosafe.trips.domain.model.commands.UpdateDriverCommand;
-import com.dynoware.cargosafe.trips.domain.services.DriverCommandService;
-import com.dynoware.cargosafe.trips.infrastructure.persistence.jpa.DriverRepository;
+import com.dynoware.cargosafe.tripsservice.kafka.producer.TripsKafkaProducer;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates.Driver;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.CreateDriverCommand;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.DeleteDriverCommand;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.UpdateDriverCommand;
+import com.dynoware.cargosafe.tripsservice.trips.domain.services.DriverCommandService;
+import com.dynoware.cargosafe.tripsservice.trips.infrastructure.persistence.jpa.DriverRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

@@ -1,9 +1,9 @@
-package com.dynoware.cargosafe.trips.domain.services;
+package com.dynoware.cargosafe.tripsservice.trips.domain.services;
 
-import com.dynoware.cargosafe.trips.domain.model.aggregates.Trip;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetAllTripsByIdQuery;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetAllTripsByUserIdQuery;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetAllTripsQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates.Trip;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetAllTripsByIdQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetAllTripsByUserIdQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetAllTripsQuery;
 
 import java.util.List;
 import java.util.Optional;

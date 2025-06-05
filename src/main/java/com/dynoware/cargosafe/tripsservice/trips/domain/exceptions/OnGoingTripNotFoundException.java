@@ -1,4 +1,4 @@
-package com.dynoware.cargosafe.trips.domain.exceptions;
+package com.dynoware.cargosafe.tripsservice.trips.domain.exceptions;
 
 public class OnGoingTripNotFoundException extends RuntimeException {
     public OnGoingTripNotFoundException(Long aLong) {

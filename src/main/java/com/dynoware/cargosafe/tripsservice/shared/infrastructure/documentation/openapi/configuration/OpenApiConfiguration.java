@@ -1,4 +1,4 @@
-package com.dynoware.cargosafe.shared.infrastructure.documentation.openapi.configuration;
+package com.dynoware.cargosafe.tripsservice.shared.infrastructure.documentation.openapi.configuration;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.ExternalDocumentation;

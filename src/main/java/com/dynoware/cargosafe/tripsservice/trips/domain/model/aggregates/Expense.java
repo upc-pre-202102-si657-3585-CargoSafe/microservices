@@ -1,7 +1,7 @@
-package com.dynoware.cargosafe.trips.domain.model.aggregates;
+package com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates;
 
-import com.dynoware.cargosafe.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
-import com.dynoware.cargosafe.trips.domain.model.commands.CreateExpenseCommand;
+import com.dynoware.cargosafe.tripsservice.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.CreateExpenseCommand;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.Getter;
@@ -9,9 +9,6 @@ import lombok.Getter;
 @Getter
 @Entity
 public class Expense extends AuditableAbstractAggregateRoot<Expense> {
-
-    // ✅ QUITAR: El @Id ya está en AuditableAbstractAggregateRoot
-    // No redefinir id aquí
 
     @Column(nullable = false)
     private int fuelAmount;
@@ -31,7 +28,8 @@ public class Expense extends AuditableAbstractAggregateRoot<Expense> {
     @Column(nullable = false)
     private String tollsDescription;
 
-    protected Expense() {}
+    protected Expense() {
+    }
 
     public Expense(CreateExpenseCommand command) {
         this.fuelAmount = command.fuelAmount();
@@ -43,6 +41,6 @@ public class Expense extends AuditableAbstractAggregateRoot<Expense> {
     }
 
     public Expense(Long id) {
-        super(id); // ✅ CAMBIO: Usar el constructor padre
+        super(id);
     }
 }

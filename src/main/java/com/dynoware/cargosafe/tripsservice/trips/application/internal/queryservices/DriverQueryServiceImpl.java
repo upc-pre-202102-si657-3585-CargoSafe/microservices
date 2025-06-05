@@ -1,10 +1,10 @@
-package com.dynoware.cargosafe.trips.application.internal.queryservices;
+package com.dynoware.cargosafe.tripsservice.trips.application.internal.queryservices;
 
-import com.dynoware.cargosafe.trips.domain.model.aggregates.Driver;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetAllDriversQuery;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetDriverByIdQuery;
-import com.dynoware.cargosafe.trips.domain.services.DriverQueryService;
-import com.dynoware.cargosafe.trips.infrastructure.persistence.jpa.DriverRepository;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates.Driver;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetAllDriversQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetDriverByIdQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.services.DriverQueryService;
+import com.dynoware.cargosafe.tripsservice.trips.infrastructure.persistence.jpa.DriverRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

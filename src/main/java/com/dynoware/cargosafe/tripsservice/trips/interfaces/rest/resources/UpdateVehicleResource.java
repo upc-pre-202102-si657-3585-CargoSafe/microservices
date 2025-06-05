@@ -1,4 +1,4 @@
-package com.dynoware.cargosafe.trips.interfaces.rest.resources;
+package com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources;
 
 public record UpdateVehicleResource(
 

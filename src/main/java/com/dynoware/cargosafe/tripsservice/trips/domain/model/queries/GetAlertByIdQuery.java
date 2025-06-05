@@ -1,4 +1,4 @@
-package com.dynoware.cargosafe.trips.domain.model.queries;
+package com.dynoware.cargosafe.tripsservice.trips.domain.model.queries;
 
 public record GetAlertByIdQuery(Long id) {
     public GetAlertByIdQuery {

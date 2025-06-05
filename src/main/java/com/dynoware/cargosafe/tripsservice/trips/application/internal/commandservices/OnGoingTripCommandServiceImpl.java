@@ -1,11 +1,11 @@
-package com.dynoware.cargosafe.trips.application.internal.commandservices;
+package com.dynoware.cargosafe.tripsservice.trips.application.internal.commandservices;
 
 
-import com.dynoware.cargosafe.trips.domain.model.aggregates.OnGoingTrip;
-import com.dynoware.cargosafe.trips.domain.model.commands.CreateOnGoingTripCommand;
-import com.dynoware.cargosafe.trips.domain.model.commands.UpdateOnGoingTripCommand;
-import com.dynoware.cargosafe.trips.domain.services.OnGoingTripCommandService;
-import com.dynoware.cargosafe.trips.infrastructure.persistence.jpa.OnGoingTripRepository;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates.OnGoingTrip;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.CreateOnGoingTripCommand;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.UpdateOnGoingTripCommand;
+import com.dynoware.cargosafe.tripsservice.trips.domain.services.OnGoingTripCommandService;
+import com.dynoware.cargosafe.tripsservice.trips.infrastructure.persistence.jpa.OnGoingTripRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

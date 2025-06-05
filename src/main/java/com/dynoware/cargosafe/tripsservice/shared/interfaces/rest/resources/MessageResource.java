@@ -1,4 +1,4 @@
-package com.dynoware.cargosafe.shared.interfaces.rest.resources;
+package com.dynoware.cargosafe.tripsservice.shared.interfaces.rest.resources;
 
 /**
  * Message Resource

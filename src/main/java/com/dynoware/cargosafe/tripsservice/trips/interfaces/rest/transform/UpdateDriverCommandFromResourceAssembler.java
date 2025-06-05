@@ -1,7 +1,7 @@
-package com.dynoware.cargosafe.trips.interfaces.rest.transform;
+package com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform;
 
-import com.dynoware.cargosafe.trips.domain.model.commands.UpdateDriverCommand;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.UpdateDriverResource;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.UpdateDriverCommand;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.UpdateDriverResource;
 
 public class UpdateDriverCommandFromResourceAssembler {
     public static UpdateDriverCommand toCommandFromResource(Long driverId,

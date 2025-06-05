@@ -1,4 +1,4 @@
-package com.dynoware.cargosafe.shared.domain.model.aggregates;
+package com.dynoware.cargosafe.tripsservice.shared.domain.model.aggregates;
 
 
 import jakarta.persistence.*;

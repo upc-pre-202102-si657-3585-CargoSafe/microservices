@@ -1,7 +1,7 @@
-package com.dynoware.cargosafe.trips.interfaces.rest.transform;
+package com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform;
 
-import com.dynoware.cargosafe.trips.domain.model.commands.CreateAlertCommand;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.CreateAlertResource;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.CreateAlertCommand;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.CreateAlertResource;
 
 public class CreateAlertCommandFromResourceAssembler {
     public static CreateAlertCommand toCommandFromResource(CreateAlertResource resource) {

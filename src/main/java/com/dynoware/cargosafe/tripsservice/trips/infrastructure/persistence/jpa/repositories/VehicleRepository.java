@@ -1,6 +1,6 @@
-package com.dynoware.cargosafe.trips.infrastructure.persistence.jpa.repositories;
+package com.dynoware.cargosafe.tripsservice.trips.infrastructure.persistence.jpa.repositories;
 
-import com.dynoware.cargosafe.trips.domain.model.aggregates.Vehicle;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates.Vehicle;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

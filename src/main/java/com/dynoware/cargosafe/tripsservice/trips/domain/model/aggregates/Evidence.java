@@ -1,7 +1,7 @@
-package com.dynoware.cargosafe.trips.domain.model.aggregates;
+package com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates;
 
-import com.dynoware.cargosafe.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
-import com.dynoware.cargosafe.trips.domain.model.commands.CreateEvidenceCommand;
+import com.dynoware.cargosafe.tripsservice.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.CreateEvidenceCommand;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
@@ -17,8 +17,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Table(name = "evidences")
 public class Evidence extends AuditableAbstractAggregateRoot<Evidence> {
-
-    // ✅ QUITAR: No redefinir id, ya está en el padre
 
     @Column(nullable = false)
     private String link;

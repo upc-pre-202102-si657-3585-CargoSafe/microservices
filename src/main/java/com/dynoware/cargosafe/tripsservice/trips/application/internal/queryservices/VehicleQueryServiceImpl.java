@@ -1,11 +1,11 @@
-package com.dynoware.cargosafe.trips.application.internal.queryservices;
+package com.dynoware.cargosafe.tripsservice.trips.application.internal.queryservices;
 
-import com.dynoware.cargosafe.trips.domain.model.aggregates.Vehicle;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetAllVehiclesQuery;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetVehicleByIdQuery;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetVehicleByModelQuery;
-import com.dynoware.cargosafe.trips.domain.services.VehicleQueryService;
-import com.dynoware.cargosafe.trips.infrastructure.persistence.jpa.repositories.VehicleRepository;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates.Vehicle;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetAllVehiclesQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetVehicleByIdQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetVehicleByModelQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.services.VehicleQueryService;
+import com.dynoware.cargosafe.tripsservice.trips.infrastructure.persistence.jpa.repositories.VehicleRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

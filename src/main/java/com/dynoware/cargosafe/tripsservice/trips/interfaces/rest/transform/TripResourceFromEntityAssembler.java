@@ -1,7 +1,7 @@
-package com.dynoware.cargosafe.trips.interfaces.rest.transform;
+package com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform;
 
-import com.dynoware.cargosafe.trips.domain.model.aggregates.Trip;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.TripResource;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates.Trip;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.TripResource;
 
 public class TripResourceFromEntityAssembler {
     public static TripResource toResourceFromEntity(Trip trip) {

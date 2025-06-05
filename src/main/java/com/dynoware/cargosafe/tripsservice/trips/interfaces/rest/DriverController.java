@@ -1,17 +1,17 @@
-package com.dynoware.cargosafe.trips.interfaces.rest;
+package com.dynoware.cargosafe.tripsservice.trips.interfaces.rest;
 
 
-import com.dynoware.cargosafe.trips.domain.model.commands.DeleteDriverCommand;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetAllDriversQuery;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetDriverByIdQuery;
-import com.dynoware.cargosafe.trips.domain.services.DriverCommandService;
-import com.dynoware.cargosafe.trips.domain.services.DriverQueryService;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.CreateDriverResource;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.DriverResource;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.UpdateDriverResource;
-import com.dynoware.cargosafe.trips.interfaces.rest.transform.CreateDriverCommandFromResourceAssembler;
-import com.dynoware.cargosafe.trips.interfaces.rest.transform.DriverResourceFromEntityAssembler;
-import com.dynoware.cargosafe.trips.interfaces.rest.transform.UpdateDriverCommandFromResourceAssembler;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.DeleteDriverCommand;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetAllDriversQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetDriverByIdQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.services.DriverCommandService;
+import com.dynoware.cargosafe.tripsservice.trips.domain.services.DriverQueryService;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.CreateDriverResource;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.DriverResource;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.UpdateDriverResource;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform.CreateDriverCommandFromResourceAssembler;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform.DriverResourceFromEntityAssembler;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform.UpdateDriverCommandFromResourceAssembler;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

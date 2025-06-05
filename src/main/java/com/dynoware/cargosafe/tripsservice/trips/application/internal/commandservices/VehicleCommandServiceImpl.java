@@ -1,11 +1,11 @@
-package com.dynoware.cargosafe.trips.application.internal.commandservices;
+package com.dynoware.cargosafe.tripsservice.trips.application.internal.commandservices;
 
-import com.dynoware.cargosafe.trips.domain.model.aggregates.Vehicle;
-import com.dynoware.cargosafe.trips.domain.model.commands.CreateVehicleCommand;
-import com.dynoware.cargosafe.trips.domain.model.commands.DeleteVehicleCommand;
-import com.dynoware.cargosafe.trips.domain.model.commands.UpdateVehicleCommand;
-import com.dynoware.cargosafe.trips.domain.services.VehicleCommandService;
-import com.dynoware.cargosafe.trips.infrastructure.persistence.jpa.repositories.VehicleRepository;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates.Vehicle;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.CreateVehicleCommand;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.DeleteVehicleCommand;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.UpdateVehicleCommand;
+import com.dynoware.cargosafe.tripsservice.trips.domain.services.VehicleCommandService;
+import com.dynoware.cargosafe.tripsservice.trips.infrastructure.persistence.jpa.repositories.VehicleRepository;
 import org.springframework.stereotype.Service;
 
 @Service

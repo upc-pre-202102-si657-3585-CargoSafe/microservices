@@ -1,7 +1,7 @@
-package com.dynoware.cargosafe.trips.interfaces.rest.transform;
+package com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform;
 
-import com.dynoware.cargosafe.trips.domain.model.aggregates.Alert;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.AlertResource;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates.Alert;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.AlertResource;
 
 public class AlertResourceFromEntityAssembler {
     public static AlertResource toResourceFromEntity(Alert entity) {

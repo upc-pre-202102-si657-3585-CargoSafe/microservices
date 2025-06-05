@@ -1,7 +1,7 @@
-package com.dynoware.cargosafe.trips.domain.model.aggregates;
+package com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates;
 
-import com.dynoware.cargosafe.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
-import com.dynoware.cargosafe.trips.domain.model.commands.CreateAlertCommand;
+import com.dynoware.cargosafe.tripsservice.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.CreateAlertCommand;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,9 +14,6 @@ import java.util.Date;
 @Getter
 @Entity
 public class Alert extends AuditableAbstractAggregateRoot<Alert> {
-
-    // ✅ QUITAR: El @Id ya está en AuditableAbstractAggregateRoot
-    // No necesitas redefinir id aquí
 
     @Column(nullable = false)
     private String title;
@@ -36,6 +33,6 @@ public class Alert extends AuditableAbstractAggregateRoot<Alert> {
     }
 
     public Alert(Long id) {
-        super(id); // ✅ CAMBIO: Usar el constructor padre
+        super(id);
     }
 }

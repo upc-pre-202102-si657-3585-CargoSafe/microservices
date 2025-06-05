@@ -1,4 +1,4 @@
-package com.dynoware.cargosafe.kafka.config;
+package com.dynoware.cargosafe.tripsservice.kafka.config;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;

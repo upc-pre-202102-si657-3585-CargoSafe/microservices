@@ -1,9 +1,9 @@
-package com.dynoware.cargosafe.trips.application.internal.commandservices;
+package com.dynoware.cargosafe.tripsservice.trips.application.internal.commandservices;
 
-import com.dynoware.cargosafe.trips.domain.model.aggregates.Alert;
-import com.dynoware.cargosafe.trips.domain.model.commands.CreateAlertCommand;
-import com.dynoware.cargosafe.trips.domain.services.AlertCommandService;
-import com.dynoware.cargosafe.trips.infrastructure.persistence.jpa.AlertRepository;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates.Alert;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.CreateAlertCommand;
+import com.dynoware.cargosafe.tripsservice.trips.domain.services.AlertCommandService;
+import com.dynoware.cargosafe.tripsservice.trips.infrastructure.persistence.jpa.AlertRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

@@ -1,8 +1,8 @@
-package com.dynoware.cargosafe.trips.domain.services;
+package com.dynoware.cargosafe.tripsservice.trips.domain.services;
 
-import com.dynoware.cargosafe.trips.domain.model.aggregates.OnGoingTrip;
-import com.dynoware.cargosafe.trips.domain.model.commands.CreateOnGoingTripCommand;
-import com.dynoware.cargosafe.trips.domain.model.commands.UpdateOnGoingTripCommand;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates.OnGoingTrip;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.CreateOnGoingTripCommand;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.UpdateOnGoingTripCommand;
 
 import java.util.Optional;
 

@@ -1,7 +1,7 @@
-package com.dynoware.cargosafe.trips.domain.model.aggregates;
+package com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates;
 
-import com.dynoware.cargosafe.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
-import com.dynoware.cargosafe.trips.domain.model.commands.CreateVehicleCommand;
+import com.dynoware.cargosafe.tripsservice.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.CreateVehicleCommand;
 import io.jsonwebtoken.lang.Strings;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -10,9 +10,6 @@ import lombok.Getter;
 @Entity
 @Table(name = "vehicles")
 public class Vehicle extends AuditableAbstractAggregateRoot<Vehicle> {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column(name = "model", nullable = false)
     private String model;
@@ -65,8 +62,9 @@ public class Vehicle extends AuditableAbstractAggregateRoot<Vehicle> {
     }
 
     public Vehicle(Long id) {
-        this.id = id;
+        super(id);
     }
+
 
     public void setModel(String model) {
         this.model = model;

@@ -1,15 +1,15 @@
-package com.dynoware.cargosafe.trips.interfaces.rest;
+package com.dynoware.cargosafe.tripsservice.trips.interfaces.rest;
 
-import com.dynoware.cargosafe.trips.domain.model.queries.GetAllOnGoingTripsQuery;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetOnGoingTripByIdQuery;
-import com.dynoware.cargosafe.trips.domain.services.OnGoingTripCommandService;
-import com.dynoware.cargosafe.trips.domain.services.OnGoingTripQueryService;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.CreateOnGoingTripResource;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.OnGoingTripResource;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.UpdateOnGoingTripResource;
-import com.dynoware.cargosafe.trips.interfaces.rest.transform.CreateOnGoingTripCommandFromResourceAssembler;
-import com.dynoware.cargosafe.trips.interfaces.rest.transform.OnGoingTripResourceFromEntityAssembler;
-import com.dynoware.cargosafe.trips.interfaces.rest.transform.UpdateOnGoingTripCommandFromResourceAssembler;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetAllOnGoingTripsQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetOnGoingTripByIdQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.services.OnGoingTripCommandService;
+import com.dynoware.cargosafe.tripsservice.trips.domain.services.OnGoingTripQueryService;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.CreateOnGoingTripResource;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.OnGoingTripResource;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.UpdateOnGoingTripResource;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform.CreateOnGoingTripCommandFromResourceAssembler;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform.OnGoingTripResourceFromEntityAssembler;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform.UpdateOnGoingTripCommandFromResourceAssembler;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

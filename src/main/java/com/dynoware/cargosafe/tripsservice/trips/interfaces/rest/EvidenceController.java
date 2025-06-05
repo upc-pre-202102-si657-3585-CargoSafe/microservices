@@ -1,13 +1,13 @@
-package com.dynoware.cargosafe.trips.interfaces.rest;
+package com.dynoware.cargosafe.tripsservice.trips.interfaces.rest;
 
-import com.dynoware.cargosafe.trips.domain.model.queries.GetAllEvidencesQuery;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetEvidenceByIdQuery;
-import com.dynoware.cargosafe.trips.domain.services.EvidenceCommandService;
-import com.dynoware.cargosafe.trips.domain.services.EvidenceQueryService;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.CreateEvidenceResource;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.EvidenceResource;
-import com.dynoware.cargosafe.trips.interfaces.rest.transform.CreateEvidenceCommandFromResourceAssembler;
-import com.dynoware.cargosafe.trips.interfaces.rest.transform.EvidenceResourceFromEntityAssembler;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetAllEvidencesQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetEvidenceByIdQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.services.EvidenceCommandService;
+import com.dynoware.cargosafe.tripsservice.trips.domain.services.EvidenceQueryService;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.CreateEvidenceResource;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.EvidenceResource;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform.CreateEvidenceCommandFromResourceAssembler;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform.EvidenceResourceFromEntityAssembler;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

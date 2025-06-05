@@ -118,23 +118,23 @@ case "${distributionUrl##*/}" in
 maven-mvnd-*bin.*)
   MVN_CMD=mvnd.sh _MVNW_REPO_PATTERN=/maven/mvnd/
   case "${PROCESSOR_ARCHITECTURE-}${PROCESSOR_ARCHITEW6432-}:$(uname -a)" in
-  *AMD64:CYGWIN* | *AMD64:MINGW*) distributioniamservice=windows-amd64 ;;
-  :Darwin*x86_64) distributioniamservice=darwin-amd64 ;;
-  :Darwin*arm64) distributioniamservice=darwin-aarch64 ;;
-  :Linux*x86_64*) distributioniamservice=linux-amd64 ;;
+  *AMD64:CYGWIN* | *AMD64:MINGW*) distributionPlatform=windows-amd64 ;;
+  :Darwin*x86_64) distributionPlatform=darwin-amd64 ;;
+  :Darwin*arm64) distributionPlatform=darwin-aarch64 ;;
+  :Linux*x86_64*) distributionPlatform=linux-amd64 ;;
   *)
-    echo "Cannot detect native iamservice for mvnd on $(uname)-$(uname -m), use pure java version" >&2
-    distributioniamservice=linux-amd64
+    echo "Cannot detect native platform for mvnd on $(uname)-$(uname -m), use pure java version" >&2
+    distributionPlatform=linux-amd64
     ;;
   esac
-  distributionUrl="${distributionUrl%-bin.*}-$distributioniamservice.zip"
+  distributionUrl="${distributionUrl%-bin.*}-$distributionPlatform.zip"
   ;;
 maven-mvnd-*) MVN_CMD=mvnd.sh _MVNW_REPO_PATTERN=/maven/mvnd/ ;;
 *) MVN_CMD="mvn${0##*/mvnw}" _MVNW_REPO_PATTERN=/org/apache/maven/ ;;
 esac
 
 # apply MVNW_REPOURL and calculate MAVEN_HOME
-# maven home pattern: ~/.m2/wrapper/dists/{apache-maven-<version>,maven-mvnd-<version>-<iamservice>}/<hash>
+# maven home pattern: ~/.m2/wrapper/dists/{apache-maven-<version>,maven-mvnd-<version>-<platform>}/<hash>
 [ -z "${MVNW_REPOURL-}" ] || distributionUrl="$MVNW_REPOURL$_MVNW_REPO_PATTERN${distributionUrl#*"$_MVNW_REPO_PATTERN"}"
 distributionUrlName="${distributionUrl##*/}"
 distributionUrlNameMain="${distributionUrlName%.*}"

@@ -1,14 +1,14 @@
-package com.dynoware.cargosafe.trips.interfaces.rest;
+package com.dynoware.cargosafe.tripsservice.trips.interfaces.rest;
 
-import com.dynoware.cargosafe.trips.domain.model.aggregates.Expense;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetAllExpenseQuery;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetExpenseByIdQuery;
-import com.dynoware.cargosafe.trips.domain.services.ExpenseCommandService;
-import com.dynoware.cargosafe.trips.domain.services.ExpenseQueryService;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.CreateExpenseResource;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.ExpenseResource;
-import com.dynoware.cargosafe.trips.interfaces.rest.transform.CreateExpenseCommandFromResourceAssembler;
-import com.dynoware.cargosafe.trips.interfaces.rest.transform.ExpenseResourceFromEntityAssembler;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates.Expense;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetAllExpenseQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetExpenseByIdQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.services.ExpenseCommandService;
+import com.dynoware.cargosafe.tripsservice.trips.domain.services.ExpenseQueryService;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.CreateExpenseResource;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.ExpenseResource;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform.CreateExpenseCommandFromResourceAssembler;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform.ExpenseResourceFromEntityAssembler;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

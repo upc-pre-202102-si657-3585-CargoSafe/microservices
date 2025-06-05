@@ -1,4 +1,4 @@
-package com.dynoware.cargosafe.kafka.producer;
+package com.dynoware.cargosafe.tripsservice.kafka.producer;
 
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;

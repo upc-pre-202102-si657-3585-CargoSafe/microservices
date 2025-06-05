@@ -1,4 +1,4 @@
-package com.dynoware.cargosafe.shared.infrastructure.persistence.jpa.strategy;
+package com.dynoware.cargosafe.tripsservice.shared.infrastructure.persistence.jpa.strategy;
 
 
 import org.hibernate.boot.model.naming.Identifier;

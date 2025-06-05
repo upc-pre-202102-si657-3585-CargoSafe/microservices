@@ -1,7 +1,7 @@
-package com.dynoware.cargosafe.trips.interfaces.rest.transform;
+package com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform;
 
-import com.dynoware.cargosafe.trips.domain.model.commands.CreateOnGoingTripCommand;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.CreateOnGoingTripResource;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.CreateOnGoingTripCommand;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.CreateOnGoingTripResource;
 
 public class CreateOnGoingTripCommandFromResourceAssembler {
     public static CreateOnGoingTripCommand toCommandFromResource(CreateOnGoingTripResource resource) {

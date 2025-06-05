@@ -1,8 +1,8 @@
-package com.dynoware.cargosafe.trips.domain.model.aggregates;
+package com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates;
 
-import com.dynoware.cargosafe.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
-import com.dynoware.cargosafe.trips.domain.model.commands.CreateTripCommand;
-import com.dynoware.cargosafe.trips.domain.model.commands.UpdateTripCommand;
+import com.dynoware.cargosafe.tripsservice.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.CreateTripCommand;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.UpdateTripCommand;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

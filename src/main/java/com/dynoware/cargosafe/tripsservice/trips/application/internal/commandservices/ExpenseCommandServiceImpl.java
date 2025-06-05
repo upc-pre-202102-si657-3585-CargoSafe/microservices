@@ -1,9 +1,9 @@
-package com.dynoware.cargosafe.trips.application.internal.commandservices;
+package com.dynoware.cargosafe.tripsservice.trips.application.internal.commandservices;
 
-import com.dynoware.cargosafe.trips.domain.model.aggregates.Expense;
-import com.dynoware.cargosafe.trips.domain.model.commands.CreateExpenseCommand;
-import com.dynoware.cargosafe.trips.domain.services.ExpenseCommandService;
-import com.dynoware.cargosafe.trips.infrastructure.persistence.jpa.ExpenseRepository;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates.Expense;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.CreateExpenseCommand;
+import com.dynoware.cargosafe.tripsservice.trips.domain.services.ExpenseCommandService;
+import com.dynoware.cargosafe.tripsservice.trips.infrastructure.persistence.jpa.ExpenseRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

@@ -1,11 +1,11 @@
-package com.dynoware.cargosafe.trips.application.internal.queryservices;
+package com.dynoware.cargosafe.tripsservice.trips.application.internal.queryservices;
 
-import com.dynoware.cargosafe.trips.domain.model.aggregates.Trip;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetAllTripsByIdQuery;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetAllTripsByUserIdQuery;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetAllTripsQuery;
-import com.dynoware.cargosafe.trips.domain.services.TripQueryService;
-import com.dynoware.cargosafe.trips.infrastructure.persistence.jpa.repositories.TripRepository;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates.Trip;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetAllTripsByIdQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetAllTripsByUserIdQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetAllTripsQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.services.TripQueryService;
+import com.dynoware.cargosafe.tripsservice.trips.infrastructure.persistence.jpa.repositories.TripRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

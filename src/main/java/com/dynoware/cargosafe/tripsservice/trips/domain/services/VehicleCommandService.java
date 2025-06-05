@@ -1,8 +1,8 @@
-package com.dynoware.cargosafe.trips.domain.services;
+package com.dynoware.cargosafe.tripsservice.trips.domain.services;
 
-import com.dynoware.cargosafe.trips.domain.model.commands.CreateVehicleCommand;
-import com.dynoware.cargosafe.trips.domain.model.commands.DeleteVehicleCommand;
-import com.dynoware.cargosafe.trips.domain.model.commands.UpdateVehicleCommand;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.CreateVehicleCommand;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.DeleteVehicleCommand;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.UpdateVehicleCommand;
 
 public interface VehicleCommandService {
     void createVehicle(CreateVehicleCommand command);

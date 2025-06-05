@@ -1,6 +1,6 @@
-package com.dynoware.cargosafe.trips.domain.model.aggregates;
+package com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates;
 
-import com.dynoware.cargosafe.trips.domain.model.commands.CreateDriverCommand;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.CreateDriverCommand;
 import jakarta.persistence.*;
 import lombok.Getter;
 import org.apache.logging.log4j.util.Strings;
@@ -8,7 +8,6 @@ import org.apache.logging.log4j.util.Strings;
 @Getter
 @Entity
 @Table(name = "drivers")
-
 public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +25,7 @@ public class Driver {
     @Column(name = "contact_num", nullable = false)
     private String contactNum;
 
-    @Column(name = "url_photo",nullable = false)
+    @Column(name = "url_photo", nullable = false)
     private String urlPhoto;
 
     public Driver(){
@@ -34,7 +33,7 @@ public class Driver {
         this.dni = Strings.EMPTY;
         this.license = Strings.EMPTY;
         this.contactNum = Strings.EMPTY;
-        this.urlPhoto   = Strings.EMPTY;
+        this.urlPhoto = Strings.EMPTY;
     }
 
     public Driver(String name, String dni, String license, String contactNum, String urlPhoto) {
@@ -55,7 +54,7 @@ public class Driver {
         this.urlPhoto = command.urlPhoto();
     }
 
-    public Driver updateInformation(String name,String dni, String license, String contactNum, String urlPhoto) {
+    public Driver updateInformation(String name, String dni, String license, String contactNum, String urlPhoto) {
         this.name = name;
         this.dni = dni;
         this.license = license;
@@ -67,5 +66,4 @@ public class Driver {
     public Driver(Long id) {
         this.id = id;
     }
-
 }

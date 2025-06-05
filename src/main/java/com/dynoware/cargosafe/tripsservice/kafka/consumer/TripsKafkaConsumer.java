@@ -1,4 +1,4 @@
-package com.dynoware.cargosafe.kafka.consumer;
+package com.dynoware.cargosafe.tripsservice.kafka.consumer;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;

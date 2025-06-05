@@ -1,7 +1,7 @@
-package com.dynoware.cargosafe.trips.interfaces.rest.transform;
+package com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform;
 
-import com.dynoware.cargosafe.trips.domain.model.commands.CreateVehicleCommand;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.CreateVehicleResource;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.CreateVehicleCommand;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.CreateVehicleResource;
 
 public class CreateVehicleCommandFromResourceAssembler {
     public static CreateVehicleCommand toCommandFromResource(CreateVehicleResource resource){

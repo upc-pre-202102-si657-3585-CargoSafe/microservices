@@ -1,14 +1,14 @@
-package com.dynoware.cargosafe.trips.interfaces.rest;
+package com.dynoware.cargosafe.tripsservice.trips.interfaces.rest;
 
-import com.dynoware.cargosafe.trips.domain.model.aggregates.Alert;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetAlertByIdQuery;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetAllAlertQuery;
-import com.dynoware.cargosafe.trips.domain.services.AlertCommandService;
-import com.dynoware.cargosafe.trips.domain.services.AlertQueryService;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.AlertResource;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.CreateAlertResource;
-import com.dynoware.cargosafe.trips.interfaces.rest.transform.AlertResourceFromEntityAssembler;
-import com.dynoware.cargosafe.trips.interfaces.rest.transform.CreateAlertCommandFromResourceAssembler;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.aggregates.Alert;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetAlertByIdQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetAllAlertQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.services.AlertCommandService;
+import com.dynoware.cargosafe.tripsservice.trips.domain.services.AlertQueryService;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.AlertResource;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.CreateAlertResource;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform.AlertResourceFromEntityAssembler;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform.CreateAlertCommandFromResourceAssembler;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

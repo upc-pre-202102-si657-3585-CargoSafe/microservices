@@ -1,15 +1,15 @@
-package com.dynoware.cargosafe.trips.interfaces.rest;
+package com.dynoware.cargosafe.tripsservice.trips.interfaces.rest;
 
-import com.dynoware.cargosafe.trips.domain.model.commands.DeleteTripCommand;
-import com.dynoware.cargosafe.trips.domain.model.commands.UpdateTripCommand;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetAllTripsByIdQuery;
-import com.dynoware.cargosafe.trips.domain.model.queries.GetAllTripsQuery;
-import com.dynoware.cargosafe.trips.domain.services.TripCommandService;
-import com.dynoware.cargosafe.trips.domain.services.TripQueryService;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.CreateTripResource;
-import com.dynoware.cargosafe.trips.interfaces.rest.resources.TripResource;
-import com.dynoware.cargosafe.trips.interfaces.rest.transform.CreateTripCommandFromResourceAssembler;
-import com.dynoware.cargosafe.trips.interfaces.rest.transform.TripResourceFromEntityAssembler;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.DeleteTripCommand;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.commands.UpdateTripCommand;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetAllTripsByIdQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.model.queries.GetAllTripsQuery;
+import com.dynoware.cargosafe.tripsservice.trips.domain.services.TripCommandService;
+import com.dynoware.cargosafe.tripsservice.trips.domain.services.TripQueryService;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.CreateTripResource;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.resources.TripResource;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform.CreateTripCommandFromResourceAssembler;
+import com.dynoware.cargosafe.tripsservice.trips.interfaces.rest.transform.TripResourceFromEntityAssembler;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
