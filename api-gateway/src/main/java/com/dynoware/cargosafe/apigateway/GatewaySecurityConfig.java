@@ -53,7 +53,11 @@ public class GatewaySecurityConfig {
 
                                 // Requests
                                 "/request/v3/api-docs",
-                                "/api/v1/requests/**").permitAll()
+                                "/api/v1/requests/**",
+                                // trips
+
+                                "/trips/v3/api-docs",
+                                "/api/v1/trips/**").permitAll()
                         .anyExchange().authenticated()
                 )
                 .oauth2ResourceServer(resourceServer -> resourceServer
