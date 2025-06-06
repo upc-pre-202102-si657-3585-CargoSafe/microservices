@@ -111,6 +111,7 @@ services:
       context: paymentcards
       dockerfile: docker/Dockerfile
     depends_on:
+      - kafka
       - mysql-paymentcards
       - eureka
     ports:
@@ -122,6 +123,8 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-paymentcards:3306/paymentcards_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+
 
   mysql-profile:
     image: mysql:8.0
