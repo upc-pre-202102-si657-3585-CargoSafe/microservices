@@ -26,24 +26,5 @@ public class OpenApiConfig {
                                         .scheme("bearer")
                                         .bearerFormat("JWT")));
     }
-    @Bean
-    public GlobalFilter customFilter() {
-        return (exchange, chain) -> {
-            ServerHttpRequest request = exchange.getRequest();
-            String token = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
 
-            System.out.println("Authorization header received: " + token); // TEMPORAL
-
-            // Puedes reenviar el token si es necesario
-            if (token != null) {
-                ServerHttpRequest mutatedRequest = exchange.getRequest()
-                        .mutate()
-                        .header(HttpHeaders.AUTHORIZATION, token)
-                        .build();
-                return chain.filter(exchange.mutate().request(mutatedRequest).build());
-            }
-
-            return chain.filter(exchange);
-        };
-    }
 }

@@ -84,7 +84,6 @@ public class GatewaySecurityConfig {
         byte[] keyBytes = jwtSecret.getBytes(StandardCharsets.UTF_8);
         SecretKey key = Keys.hmacShaKeyFor(keyBytes);
 
-        // 👇 Forzar el algoritmo HS384 explícitamente
         return NimbusReactiveJwtDecoder
                 .withSecretKey(key)
                 .macAlgorithm(MacAlgorithm.HS384)

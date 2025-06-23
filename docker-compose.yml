@@ -53,10 +53,13 @@ services:
       - app-tier
       - 'dockernetflix-network'
     environment:
-      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-iam-service:3306/iam_service_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=admin
+    - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-iam-service:3306/iam_service_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    - SPRING_DATASOURCE_USERNAME=root
+    - SPRING_DATASOURCE_PASSWORD=admin
+    - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka:8761/eureka/
+    - EUREKA_INSTANCE_PREFER_IP_ADDRESS=true
+    - EUREKA_INSTANCE_HOSTNAME=iam-service
     restart: always
 
   mysql-companies:
@@ -268,6 +271,9 @@ services:
       - app-tier
       - 'dockernetflix-network'
     restart: always
+    environment:
+      - EUREKA_CLIENT_REGISTER_WITH_EUREKA=true
+      - EUREKA_CLIENT_FETCH_REGISTRY=true
 volumes:
   kafka_data:
   mysql_iam_data:
