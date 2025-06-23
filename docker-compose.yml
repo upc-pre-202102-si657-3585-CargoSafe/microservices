@@ -26,6 +26,7 @@ services:
   mysql-iam-service:
     image: mysql:8.0
     container_name: mysql-iam-service
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: iam_service_db
@@ -56,6 +57,7 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-iam-service:3306/iam_service_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=admin
+    restart: always
 
   mysql-companies:
     image: mysql:8.0
@@ -71,7 +73,7 @@ services:
       - app-tier
       - 'dockernetflix-network'
     command: --default-authentication-plugin=mysql_native_password
-
+    restart: always
   companies:
     build:
       context: companies
@@ -90,7 +92,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=admin
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
-
+    restart: always
   mysql-paymentcards:
     image: mysql:8.0
     container_name: mysql-paymentcards
@@ -105,7 +107,7 @@ services:
       - app-tier
       - 'dockernetflix-network'
     command: --default-authentication-plugin=mysql_native_password
-
+    restart: always
   paymentcards:
     build:
       context: paymentcards
@@ -124,7 +126,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=admin
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
-
+    restart: always
 
   mysql-profile:
     image: mysql:8.0
@@ -140,7 +142,7 @@ services:
       - app-tier
       - 'dockernetflix-network'
     command: --default-authentication-plugin=mysql_native_password
-
+    restart: always
   profile:
     build:
       context: profile
@@ -159,7 +161,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=admin
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
-
+    restart: always
   mysql-request-service:
     image: mysql:8.0
     container_name: mysql-request-service
@@ -174,7 +176,7 @@ services:
       - app-tier
       - 'dockernetflix-network'
     command: --default-authentication-plugin=mysql_native_password
-
+    restart: always
   request-service:
     build:
       context: request-service
@@ -192,6 +194,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=admin
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    restart: always
   mysql-trip-service:
     image: mysql:8.0
     container_name: mysql-trips-service
@@ -213,6 +216,7 @@ services:
     depends_on:
       - mysql-trip-service
       - eureka
+    restart: always
     ports:
       - "8086:8086"
     networks:
@@ -263,7 +267,7 @@ services:
     networks:
       - app-tier
       - 'dockernetflix-network'
-
+    restart: always
 volumes:
   kafka_data:
   mysql_iam_data:
