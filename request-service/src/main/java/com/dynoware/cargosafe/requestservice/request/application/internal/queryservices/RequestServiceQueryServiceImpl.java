@@ -27,4 +27,8 @@ public class RequestServiceQueryServiceImpl implements RequestServiceQueryServic
     public List<RequestService> handle(GetAllRequestServiceQuery query) {
         return repository.findAll();
     }
+
+    public List<RequestService> handleByUserId(Long userId) {
+        return repository.findByUserId(userId);
+    }
 }

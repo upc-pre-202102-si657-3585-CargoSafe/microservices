@@ -1,5 +1,7 @@
 package com.dynoware.cargosafe.requestservice.request.interfaces.rest.resources;
 
+import jakarta.validation.constraints.NotNull;
+
 public record CreateRequestServiceResource(
         String unloadDirection,
         String type,
@@ -20,6 +22,7 @@ public record CreateRequestServiceResource(
         double destinationLat,
         double destinationLng,
         String loadDetail,
-        String weight
+        String weight,
+        @NotNull Long userId
 ) {
 }

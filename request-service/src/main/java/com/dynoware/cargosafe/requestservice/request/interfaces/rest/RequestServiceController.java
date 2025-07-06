@@ -99,6 +99,15 @@ public class RequestServiceController {
         return ResponseEntity.ok(requestServiceResources);
     }
 
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<RequestServiceResource>> getRequestServicesByUserId(@PathVariable Long userId) {
+        List<RequestService> requestServices = queryService.handleByUserId(userId);
+        var resources = requestServices.stream()
+            .map(RequestServiceResourceFromEntityAssembler::transformResourceFromEntity)
+            .toList();
+        return ResponseEntity.ok(resources);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteRequestService(@PathVariable Long id) {
         var command = new DeleteRequestServiceCommand(id);

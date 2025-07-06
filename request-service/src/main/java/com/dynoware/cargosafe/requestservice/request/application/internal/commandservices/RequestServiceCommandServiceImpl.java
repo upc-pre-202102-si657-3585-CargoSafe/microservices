@@ -9,6 +9,9 @@ import com.dynoware.cargosafe.requestservice.request.domain.model.entities.Statu
 import com.dynoware.cargosafe.requestservice.request.domain.services.RequestServiceCommandService;
 import com.dynoware.cargosafe.requestservice.request.infrastructure.persistence.jpa.repositories.RequestServiceRepository;
 import com.dynoware.cargosafe.requestservice.request.infrastructure.persistence.jpa.repositories.StatusRepository;
+import com.dynoware.cargosafe.requestservice.request.domain.exceptions.RequestServiceException;
+import com.dynoware.cargosafe.requestservice.request.domain.exceptions.StatusNotFoundException;
+import com.dynoware.cargosafe.requestservice.request.domain.exceptions.RequestServiceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,10 +49,11 @@ public class RequestServiceCommandServiceImpl implements RequestServiceCommandSe
         requestService.setDestinationLng(command.destinationLng());
         requestService.setLoadDetail(command.loadDetail());
         requestService.setWeight(command.weight());
+        requestService.setUserId(command.userId());
 
         Long statusId = command.statusId() != null ? command.statusId() : 3L;
         Status status = statusRepository.findById(statusId)
-                .orElseThrow(() -> new IllegalArgumentException("Status not found"));
+                .orElseThrow(() -> new StatusNotFoundException("Status not found with id: " + statusId));
         requestService.setStatus(status);
 
         RequestServiceStatus requestServiceStatus = new RequestServiceStatus();
@@ -64,10 +68,10 @@ public class RequestServiceCommandServiceImpl implements RequestServiceCommandSe
     @Override
     public RequestService handle(UpdateRequestServiceCommand command) {
         var requestService = repository.findById(command.id())
-                .orElseThrow(() -> new IllegalArgumentException("RequestService not found"));
+                .orElseThrow(() -> new RequestServiceNotFoundException("RequestService not found with id: " + command.id()));
 
         Status status = statusRepository.findById(command.statusId())
-                .orElseThrow(() -> new IllegalArgumentException("Status not found"));
+                .orElseThrow(() -> new StatusNotFoundException("Status not found with id: " + command.statusId()));
         requestService.setStatus(status);
         repository.save(requestService);
         return requestService;
@@ -80,9 +84,8 @@ public class RequestServiceCommandServiceImpl implements RequestServiceCommandSe
 
     public RequestService updateStatus(RequestService requestService, Long statusId) {
         Status status = statusRepository.findById(statusId)
-                .orElseThrow(() -> new IllegalArgumentException("Status not found"));
+                .orElseThrow(() -> new StatusNotFoundException("Status not found with id: " + statusId));
         requestService.setStatus(status);
-
 
         for (RequestServiceStatus requestServiceStatus : requestService.getStatuses()) {
             requestServiceStatus.setStatus(status);
