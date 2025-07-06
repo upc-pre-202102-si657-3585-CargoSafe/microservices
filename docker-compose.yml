@@ -27,7 +27,7 @@ services:
     image: mysql:8.0
     container_name: mysql-iam-service
     environment:
-      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: iam_service_db
     ports:
       - "3307:3306"
@@ -55,13 +55,13 @@ services:
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-iam-service:3306/iam_service_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_DATASOURCE_PASSWORD=root
 
   mysql-companies:
     image: mysql:8.0
     container_name: mysql-companies
     environment:
-      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: companies_db
     ports:
       - "3308:3306"
@@ -88,14 +88,14 @@ services:
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-companies:3306/companies_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_DATASOURCE_PASSWORD=root
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
 
   mysql-paymentcards:
     image: mysql:8.0
     container_name: mysql-paymentcards
     environment:
-      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: paymentcards_db
     ports:
       - "3309:3306"
@@ -121,13 +121,13 @@ services:
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-paymentcards:3306/paymentcards_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_DATASOURCE_PASSWORD=root
 
   mysql-profile:
     image: mysql:8.0
     container_name: mysql-profile
     environment:
-      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: profile_db
     ports:
       - "3310:3306"
@@ -153,14 +153,14 @@ services:
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-profile:3306/profile_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_DATASOURCE_PASSWORD=root
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
 
   mysql-request-service:
     image: mysql:8.0
     container_name: mysql-request-service
     environment:
-      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: request_service_db
     ports:
       - "3311:3306"
@@ -186,13 +186,13 @@ services:
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-request-service:3306/request_service_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_DATASOURCE_PASSWORD=root
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
   mysql-trip-service:
     image: mysql:8.0
     container_name: mysql-trips-service
     environment:
-      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: trip_service_db
     ports:
       - "3312:3306"
@@ -217,7 +217,7 @@ services:
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-trip-service:3306/trip_service_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_DATASOURCE_PASSWORD=root
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
   eureka:
     build:

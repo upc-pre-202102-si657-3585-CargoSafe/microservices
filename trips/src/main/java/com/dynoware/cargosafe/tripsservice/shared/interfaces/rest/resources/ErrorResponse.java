@@ -1,8 +1,3 @@
 package com.dynoware.cargosafe.tripsservice.shared.interfaces.rest.resources;
 
-/**
- * Message Resource
- */
-public record MessageResource(String message) {
-}
-
+public record ErrorResponse(String error, String details) {} 

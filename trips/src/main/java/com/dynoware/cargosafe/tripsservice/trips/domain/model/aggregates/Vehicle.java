@@ -18,10 +18,10 @@ public class Vehicle extends AuditableAbstractAggregateRoot<Vehicle> {
     private String plate;
 
     @Column(name = "max_load", nullable = false)
-    private float maxLoad;
+    private Float maxLoad;
 
     @Column(name = "volume", nullable = false)
-    private float volume;
+    private Float volume;
 
     @Column(name = "photo_url", nullable = false)
     private String photoUrl;
@@ -34,7 +34,7 @@ public class Vehicle extends AuditableAbstractAggregateRoot<Vehicle> {
         this.photoUrl = Strings.EMPTY;
     }
 
-    public Vehicle(String model, String plate, float maxLoad, float volume, String photoUrl) {
+    public Vehicle(String model, String plate, Float maxLoad, Float volume, String photoUrl) {
         this();
         this.model = model;
         this.plate = plate;
@@ -52,7 +52,7 @@ public class Vehicle extends AuditableAbstractAggregateRoot<Vehicle> {
         this.photoUrl = command.photoUrl();
     }
 
-    public Vehicle updateVehicle(String model, String plate, float maxLoad, float volume, String photoUrl) {
+    public Vehicle updateVehicle(String model, String plate, Float maxLoad, Float volume, String photoUrl) {
         this.model = model;
         this.plate = plate;
         this.maxLoad = maxLoad;
@@ -65,7 +65,6 @@ public class Vehicle extends AuditableAbstractAggregateRoot<Vehicle> {
         super(id);
     }
 
-
     public void setModel(String model) {
         this.model = model;
     }
@@ -74,11 +73,11 @@ public class Vehicle extends AuditableAbstractAggregateRoot<Vehicle> {
         this.plate = plate;
     }
 
-    public void setMaxLoad(float maxLoad) {
+    public void setMaxLoad(Float maxLoad) {
         this.maxLoad = maxLoad;
     }
 
-    public void setVolume(float volume) {
+    public void setVolume(Float volume) {
         this.volume = volume;
     }
 
