@@ -21,9 +21,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
+
+import com.dynoware.cargosafe.profileservice.profiles.domain.model.queries.GetProfileByEmailQuery;
+import com.dynoware.cargosafe.profileservice.profiles.domain.model.valueobjects.EmailAddress;
+import com.dynoware.cargosafe.profileservice.profiles.interfaces.acl.ProfilesContextFacade;
 
 /**
  * ProfilesController
@@ -34,10 +39,12 @@ import java.util.Optional;
 public class ProfilesController {
     private final ProfileCommandService profileCommandService;
     private final ProfileQueryService profileQueryService;
+    private final ProfilesContextFacade profilesContextFacade;
 
-    public ProfilesController(ProfileCommandService profileCommandService, ProfileQueryService profileQueryService) {
+    public ProfilesController(ProfileCommandService profileCommandService, ProfileQueryService profileQueryService, ProfilesContextFacade profilesContextFacade) {
         this.profileCommandService = profileCommandService;
         this.profileQueryService = profileQueryService;
+        this.profilesContextFacade = profilesContextFacade;
     }
 
     @PostMapping("/{userId}")
@@ -46,12 +53,21 @@ public class ProfilesController {
             @ApiResponse(responseCode = "201", description = "Profile created"),
             @ApiResponse(responseCode = "400", description = "Bad request")})
     public ResponseEntity<ProfileResource> createProfile(@PathVariable Long userId, @RequestBody CreateProfileResource resource) {
-        CreateProfileCommand createProfileCommand = CreateProfileCommandFromResourceAssembler.toCommandFromResource(resource);
-        Optional<Profile> profile = profileCommandService.handle(createProfileCommand);
-        if (profile.isEmpty()) return ResponseEntity.badRequest().build();
-        Profile createdProfile = profile.get();
-        ProfileResource profileResource = ProfileResourceFromEntityAssembler.toResourceFromEntity(createdProfile);
-        return new ResponseEntity<>(profileResource, HttpStatus.CREATED);
+        try {
+            if (resource.email() == null || resource.email().isBlank()) throw new BadRequestException("El email es obligatorio");
+            if (profileQueryService.handle(new GetProfileByEmailQuery(new EmailAddress(resource.email()))).isPresent()) {
+                throw new ProfileAlreadyExistsException("Ya existe un perfil con el email " + resource.email());
+            }
+            var id = profilesContextFacade.createProfile(
+                resource.firstName(), resource.lastName(), resource.email(), resource.street(), resource.number(), resource.city(), resource.postalCode(), resource.country()
+            );
+            var profile = profileQueryService.handle(new GetProfileByIdQuery(id));
+            if (profile.isEmpty()) throw new ProfileNotFoundException("No se pudo crear el perfil");
+            var profileResource = ProfileResourceFromEntityAssembler.toResourceFromEntity(profile.get());
+            return ResponseEntity.status(HttpStatus.CREATED).body(profileResource);
+        } catch (IllegalArgumentException ex) {
+            throw new BadRequestException(ex.getMessage());
+        }
     }
 
     @GetMapping("/{profileId}")
@@ -62,7 +78,7 @@ public class ProfilesController {
     public ResponseEntity<ProfileResource> getProfileById(@PathVariable Long profileId) {
         var getProfileByIdQuery = new GetProfileByIdQuery(profileId);
         var profile = profileQueryService.handle(getProfileByIdQuery);
-        if (profile.isEmpty()) return ResponseEntity.notFound().build();
+        if (profile.isEmpty()) throw new ProfileNotFoundException("No se encontró el perfil con ID " + profileId);
         var profileEntity = profile.get();
         var profileResource = ProfileResourceFromEntityAssembler.toResourceFromEntity(profileEntity);
         return ResponseEntity.ok(profileResource);
@@ -75,7 +91,6 @@ public class ProfilesController {
             @ApiResponse(responseCode = "404", description = "Profiles not found")})
     public ResponseEntity<List<ProfileResource>> getAllProfiles() {
         var profiles = profileQueryService.handle(new GetAllProfilesQuery());
-        if (profiles.isEmpty()) return ResponseEntity.notFound().build();
         var profileResources = profiles.stream()
                 .map(ProfileResourceFromEntityAssembler::toResourceFromEntity)
                 .toList();
@@ -120,6 +135,50 @@ public class ProfilesController {
         var profileResource = ProfileResourceFromEntityAssembler.toResourceFromEntity(profile.get());
         return ResponseEntity.ok(profileResource);
     }
+}
 
+class ProfileNotFoundException extends RuntimeException {
+    public ProfileNotFoundException(String message) { super(message); }
+}
+class ProfileAlreadyExistsException extends RuntimeException {
+    public ProfileAlreadyExistsException(String message) { super(message); }
+}
+class BadRequestException extends RuntimeException {
+    public BadRequestException(String message) { super(message); }
+}
 
+@ControllerAdvice(assignableTypes = ProfilesController.class)
+class ProfilesControllerAdvice {
+    @ExceptionHandler(ProfileNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleNotFound(ProfileNotFoundException ex) {
+        return buildError(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+    @ExceptionHandler(ProfileAlreadyExistsException.class)
+    public ResponseEntity<ErrorResponse> handleConflict(ProfileAlreadyExistsException ex) {
+        return buildError(HttpStatus.CONFLICT, ex.getMessage());
+    }
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ErrorResponse> handleBadRequest(BadRequestException ex) {
+        return buildError(HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleException(Exception ex) {
+        return buildError(HttpStatus.INTERNAL_SERVER_ERROR, "Error interno: " + ex.getMessage());
+    }
+    private ResponseEntity<ErrorResponse> buildError(HttpStatus status, String message) {
+        return ResponseEntity.status(status).body(new ErrorResponse(status.value(), status.getReasonPhrase(), message));
+    }
+    static class ErrorResponse {
+        public int status;
+        public String error;
+        public String message;
+        public ErrorResponse(int status, String error, String message) {
+            this.status = status;
+            this.error = error;
+            this.message = message;
+        }
+        public int getStatus() { return status; }
+        public String getError() { return error; }
+        public String getMessage() { return message; }
+    }
 }

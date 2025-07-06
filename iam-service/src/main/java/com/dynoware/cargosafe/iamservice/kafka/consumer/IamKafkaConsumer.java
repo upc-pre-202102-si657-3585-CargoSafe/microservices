@@ -39,10 +39,8 @@ public class IamKafkaConsumer {
             System.out.println("Created user ID: " + userId);
             kafkaTemplate.send("iam.response.user-created", userId);
 
-            // ✅ Confirmas que el mensaje se procesó correctamente
             ack.acknowledge();
         } catch (Exception e) {
-            // ❌ No confirmas → Kafka lo volverá a enviar
             System.err.println("Error al procesar mensaje: " + e.getMessage());
         }
     }
@@ -56,10 +54,9 @@ public class IamKafkaConsumer {
             System.out.println("User ID for username '" + username + "' is: " + userId);
             kafkaTemplate.send("iam.response.user-id", userId);
 
-            ack.acknowledge(); // ✅ Confirmas que el mensaje fue procesado correctamente
+            ack.acknowledge(); 
         } catch (Exception e) {
             System.err.println("Error al obtener el ID del usuario: " + e.getMessage());
-            // ❌ No haces commit para que Kafka reintente
         }
     }
 
@@ -72,10 +69,10 @@ public class IamKafkaConsumer {
             System.out.println("Username for user ID '" + userId + "' is: " + username);
             kafkaTemplate.send("iam.response.username", username);
 
-            ack.acknowledge(); // ✅ Confirmas que el mensaje fue procesado correctamente
+            ack.acknowledge(); 
         } catch (Exception e) {
             System.err.println("Error al obtener el nombre de usuario: " + e.getMessage());
-            // ❌ No haces commit para que Kafka reintente
+            
         }
     }
 
