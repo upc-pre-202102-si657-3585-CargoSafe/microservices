@@ -79,4 +79,27 @@ public class IamKafkaConsumer {
         }
     }
 
+    @KafkaListener(topics = "iam.user.validation.request", groupId = "iam-service-group")
+    public void handleUserValidationRequest(ConsumerRecord<String, Map<String, Object>> record, Acknowledgment ack) {
+        Map<String, Object> message = record.value();
+        Long userId = null;
+        String correlationId = null;
+        try {
+            Object userIdObj = message.get("userId");
+            if (userIdObj instanceof Number n) userId = n.longValue();
+            else if (userIdObj instanceof String s) userId = Long.parseLong(s);
+            correlationId = (String) message.get("correlationId");
+            boolean exists = iamContextFacade.fetchUsernameByUserId(userId) != null && !iamContextFacade.fetchUsernameByUserId(userId).isEmpty();
+            Map<String, Object> response = Map.of(
+                "userId", userId,
+                "exists", exists,
+                "correlationId", correlationId
+            );
+            kafkaTemplate.send("iam.user.validation.response", correlationId, response);
+            ack.acknowledge();
+        } catch (Exception e) {
+            System.err.println("Error al validar usuario: " + e.getMessage());
+        }
+    }
+
 }

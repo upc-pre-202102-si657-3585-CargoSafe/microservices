@@ -12,6 +12,7 @@ import com.dynoware.cargosafe.requestservice.request.infrastructure.persistence.
 import com.dynoware.cargosafe.requestservice.request.domain.exceptions.RequestServiceException;
 import com.dynoware.cargosafe.requestservice.request.domain.exceptions.StatusNotFoundException;
 import com.dynoware.cargosafe.requestservice.request.domain.exceptions.RequestServiceNotFoundException;
+import com.dynoware.cargosafe.requestservice.request.domain.services.UserValidationService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,14 +22,19 @@ import java.util.Optional;
 public class RequestServiceCommandServiceImpl implements RequestServiceCommandService {
     private final RequestServiceRepository repository;
     private final StatusRepository statusRepository;
+    private final UserValidationService userValidationService;
 
-    public RequestServiceCommandServiceImpl(RequestServiceRepository repository, StatusRepository statusRepository) {
+    public RequestServiceCommandServiceImpl(RequestServiceRepository repository, StatusRepository statusRepository, UserValidationService userValidationService) {
         this.repository = repository;
         this.statusRepository = statusRepository;
+        this.userValidationService = userValidationService;
     }
 
     @Override
     public RequestService handle(CreateRequestServiceCommand command) {
+        if (!userValidationService.validateUserExists(command.userId())) {
+            throw new RequestServiceException("El usuario no existe en el sistema PIPIPI");
+        }
         var requestService = new RequestService();
         requestService.setUnloadDirection(command.unloadDirection());
         requestService.setType(command.type());
