@@ -28,6 +28,7 @@ public class ProfileCommandServiceImpl implements ProfileCommandService {
             throw new IllegalArgumentException("Profile with email address already exists");
         }
         var profile = new Profile(command);
+
         profileRepository.save(profile);
         return Optional.of(profile);
     }
@@ -51,6 +52,33 @@ public class ProfileCommandServiceImpl implements ProfileCommandService {
         );
         profileRepository.save(profile);
         return Optional.of(profile);
+    }
+
+    @Override
+    public Optional<Profile> addUser(String email, Long userId) {
+        // Verificamos si el userId no es null
+        var emailAddress = new EmailAddress(email);
+
+        if (userId == null) {
+            throw new IllegalArgumentException("El userId no puede ser nulo.");
+        }
+
+        // Buscamos el perfil existente por username
+        Optional<Profile> existingProfile = profileRepository.findByEmailAddress(emailAddress);
+
+        if (existingProfile.isEmpty()) {
+            // Si no existe el perfil, retornamos un Optional vacío o lanzamos una excepción
+            return Optional.empty();
+        }
+
+        // Si existe el perfil, lo actualizamos con el userId proporcionado
+        Profile profile = existingProfile.get();
+        profile.setUser(userId);  // Asignamos el userId
+
+        // Guardamos el perfil actualizado en la base de datos
+        Profile updatedProfile = profileRepository.save(profile);
+
+        return Optional.of(updatedProfile);
     }
 
     @Override

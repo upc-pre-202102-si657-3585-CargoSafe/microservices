@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Profile Query Service Implementation
@@ -57,19 +59,42 @@ public class ProfileQueryServiceImpl implements ProfileQueryService {
 
     @Override
     public Optional<Profile> handle(GetProfileByUsernameQuery query) {
-        // Envía una solicitud a IAM para obtener el userId basado en el username
-        userKafkaProducer.sendUserIdRequest(query.username());
+        String username = query.username();
 
-        // Espera la respuesta del consumidor
-        Optional<Long> optionalUserId = userKafkaConsumer.getLatestUserId();
-        if (optionalUserId.isEmpty()) {
-            throw new IllegalStateException("No se pudo obtener el userId desde IAM");
+        try {
+            // Registrar la solicitud esperando la respuesta
+            var future = userKafkaConsumer.registerUserIdRequest(username);
+
+            // Enviar la solicitud a IAM
+            userKafkaProducer.sendUserIdRequest(username);
+
+            // Esperar respuesta hasta 5 segundos
+            Long userId = future.get(20, java.util.concurrent.TimeUnit.SECONDS);
+
+            // Buscar el perfil por el userId obtenido
+            return profileRepository.findByUserId(userId);
+
+        } catch (TimeoutException e) {
+            // Log para el caso de timeout
+            System.err.println("ℹ Error: Timeout al esperar la respuesta para el username: " + username);
+            throw new IllegalStateException("No se pudo obtener el userId desde IAM debido a un timeout", e);
+        } catch (InterruptedException e) {
+            // Log para el caso de interrupción del hilo
+            System.err.println("ℹ Error: La operación fue interrumpida mientras esperaba la respuesta para el username: " + username);
+            Thread.currentThread().interrupt();  // Restablecer el estado de interrupción
+            throw new IllegalStateException("Operación interrumpida mientras se esperaba el userId", e);
+        } catch (ExecutionException e) {
+            // Log para el caso de error durante la ejecución del futuro
+            System.err.println("ℹ Error: Hubo un problema al ejecutar la solicitud para el username: " + username);
+            throw new IllegalStateException("Error al ejecutar la solicitud para obtener el userId desde IAM", e);
+        } catch (Exception e) {
+            // Log para cualquier otro tipo de excepción
+            System.err.println("ℹ Error inesperado al manejar la consulta para el username: " + username);
+            e.printStackTrace(); // Mostrar detalles de la excepción
+            throw new IllegalStateException("No se pudo obtener el userId desde IAM debido a un error inesperado", e);
         }
-
-        Long userId = optionalUserId.get();
-
-        // Busca el Profile usando el userId
-        return profileRepository.findByUserId(userId);
     }
+
+
 
 }

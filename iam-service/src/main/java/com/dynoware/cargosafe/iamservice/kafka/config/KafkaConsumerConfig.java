@@ -1,6 +1,4 @@
-package com.dynoware.cargosafe.iamservice.kafka.config;
-
-
+    package com.dynoware.cargosafe.iamservice.kafka.config;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.springframework.context.annotation.Bean;
@@ -27,33 +25,25 @@ public class KafkaConsumerConfig {
     private String bootstrapServers;
 
     @Bean
-    public ConsumerFactory<String, Map<String, Object>> consumerFactory() {
+    public ConsumerFactory<String, Object> consumerFactory() {
         var props = new HashMap<String, Object>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "iam-service-group");
 
-        JsonDeserializer<Map<String, Object>> jsonDeserializer = new JsonDeserializer<>(Map.class);
-        jsonDeserializer.addTrustedPackages("*");
+        // Usamos el deserializador condicional que hemos creado
+        ConditionalDeserializer conditionalDeserializer = new ConditionalDeserializer();
 
-        ErrorHandlingDeserializer<Map<String, Object>> errorDeserializer =
-                new ErrorHandlingDeserializer<>(jsonDeserializer);
-
-        return new DefaultKafkaConsumerFactory<>(
-                props,
-                new StringDeserializer(),
-                errorDeserializer
-        );
+        return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), conditionalDeserializer);
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, Map<String, Object>> kafkaListenerContainerFactory(
-            ConsumerFactory<String, Map<String, Object>> consumerFactory) {
+    public ConcurrentKafkaListenerContainerFactory<String, Object> kafkaListenerContainerFactory(
+            ConsumerFactory<String, Object> consumerFactory) {
 
-        ConcurrentKafkaListenerContainerFactory<String, Map<String, Object>> factory =
+        ConcurrentKafkaListenerContainerFactory<String, Object> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory);
         factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL);
         return factory;
     }
 }
-

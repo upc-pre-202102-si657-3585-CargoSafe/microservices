@@ -52,16 +52,19 @@ public class IamKafkaConsumer {
     public void handleFetchUserIdByUsername(ConsumerRecord<String, String> record, Acknowledgment ack) {
         String username = record.value();
         try {
+            // Lógica para obtener el userId
             Long userId = iamContextFacade.fetchUserIdByUsername(username);
             System.out.println("User ID for username '" + username + "' is: " + userId);
-            kafkaTemplate.send("iam.response.user-id", userId);
 
-            ack.acknowledge(); // ✅ Confirmas que el mensaje fue procesado correctamente
+            // Enviar el userId al topic 'iam.response.user-id'
+            kafkaTemplate.send("iam.response.user-id", username, userId);  // Enviamos username como clave y userId como valor
+            ack.acknowledge(); // Confirmamos que se procesó el mensaje correctamente
         } catch (Exception e) {
             System.err.println("Error al obtener el ID del usuario: " + e.getMessage());
-            // ❌ No haces commit para que Kafka reintente
+            // ❌ No hacemos commit para que Kafka reintente si hay error
         }
     }
+
 
 
     @KafkaListener(topics = "iam.get-username-by-user-id", groupId = "iam-service-group")

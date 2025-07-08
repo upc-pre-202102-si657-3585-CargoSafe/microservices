@@ -20,6 +20,7 @@ public interface ProfileCommandService {
     Optional<Profile> handle(CreateProfileCommand command);
 
     Optional<Profile> handle(UpdateProfileCommand command);
+    Optional<Profile> addUser(String email, Long userId);
 
     /**
      * Delete a profile by ID

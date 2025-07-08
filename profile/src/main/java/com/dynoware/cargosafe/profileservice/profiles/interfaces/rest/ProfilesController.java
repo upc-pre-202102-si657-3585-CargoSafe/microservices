@@ -48,6 +48,7 @@ public class ProfilesController {
     public ResponseEntity<ProfileResource> createProfile(@PathVariable Long userId, @RequestBody CreateProfileResource resource) {
         CreateProfileCommand createProfileCommand = CreateProfileCommandFromResourceAssembler.toCommandFromResource(resource);
         Optional<Profile> profile = profileCommandService.handle(createProfileCommand);
+        profileCommandService.addUser(resource.email(), userId);
         if (profile.isEmpty()) return ResponseEntity.badRequest().build();
         Profile createdProfile = profile.get();
         ProfileResource profileResource = ProfileResourceFromEntityAssembler.toResourceFromEntity(createdProfile);

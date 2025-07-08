@@ -11,7 +11,6 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
-import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,17 +28,11 @@ public class KafkaConsumerConfig {
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "profileservice-group");
 
-        JsonDeserializer<Object> jsonDeserializer = new JsonDeserializer<>();
-        jsonDeserializer.addTrustedPackages("*");
+        // Usamos el deserializador condicional
+        ErrorHandlingDeserializer<Object> conditionalDeserializer =
+                new ErrorHandlingDeserializer<>(new ConditionalDeserializer());
 
-        ErrorHandlingDeserializer<Object> errorDeserializer =
-                new ErrorHandlingDeserializer<>(jsonDeserializer);
-
-        return new DefaultKafkaConsumerFactory<>(
-                props,
-                new StringDeserializer(),
-                errorDeserializer
-        );
+        return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), conditionalDeserializer);
     }
 
     @Bean
@@ -50,7 +43,7 @@ public class KafkaConsumerConfig {
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory);
 
-        // 👇 Configura ACK manual, útil para asegurar reintentos y control fino
+        // Configura ACK manual para control de reintentos
         factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL);
 
         return factory;
