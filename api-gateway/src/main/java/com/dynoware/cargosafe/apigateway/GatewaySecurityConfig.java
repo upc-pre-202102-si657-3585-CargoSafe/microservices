@@ -32,32 +32,52 @@ public class GatewaySecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeExchange(exchanges -> exchanges
                         .pathMatchers(
+                                // Actuator endpoints (para monitoreo y health checks)
+                                "/actuator/**",
+                                "/actuator/health",
+                                "/actuator/info",
+                                "/actuator/metrics/**",
+
+                                // Autenticación
                                 "/api/v1/authentication/**",
+
+                                // Swagger y documentación
                                 "/v3/api-docs/**",
                                 "/swagger-ui.html",
                                 "/swagger-ui/**",
-                                "/iam/v3/api-docs",
-                                "/iam/**",
-                                "/profile/**",
-                                "/profile/v3/api-docs",
                                 "/swagger-resources/**",
                                 "/webjars/**",
-                                "/api/v1/profiles/**",
-                                // Companies
-                                "/companies/v3/api-docs",
-                                "/api/v1/companies/**",
 
-                                // PaymentCards
+                                // IAM Service
+                                "/iam/v3/api-docs",
+                                "/iam/**",
+
+                                // Profile Service
+                                "/profile/**",
+                                "/profile/v3/api-docs",
+                                "/api/v1/profiles/**",
+
+                                // Companies Service
+                                "/companies/v3/api-docs",
+                                "/api/v1/companie/**",
+
+                                // PaymentCards Service
                                 "/paymentcards/v3/api-docs",
                                 "/api/v1/paymentcards/**",
 
-                                // Requests
+                                // Request Service
                                 "/request/v3/api-docs",
-                                "/api/v1/requests/**",
-                                // trips
+                                "/api/v1/requestServices/**",
 
+                                // Trips Service
                                 "/trips/v3/api-docs",
-                                "/api/v1/trips/**").permitAll()
+                                "/api/v1/trips/**",
+                                "/api/v1/drivers/**",
+                                "/api/v1/vehicles/**",
+                                "/api/v1/alert/**",
+                                "/api/v1/expense/**",
+                                "/api/v1/evidence/**",
+                                "/api/v1/on-going-trip/**").permitAll()
                         .anyExchange().authenticated()
                 )
                 .oauth2ResourceServer(resourceServer -> resourceServer
@@ -69,11 +89,11 @@ public class GatewaySecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("*"); // Cambia esto si quieres restringir a dominios específicos
+        config.addAllowedOriginPattern("*"); // Usar pattern en lugar de origin específico
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept"));
         config.setExposedHeaders(List.of("Authorization")); // Opcional
-        config.setAllowCredentials(true); // Si necesitas enviar cookies o headers de autenticación
+        config.setAllowCredentials(false); // Cambiar a false para evitar el conflicto
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);

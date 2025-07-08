@@ -1,10 +1,18 @@
 # Etapa 1: build
 FROM maven:3.9.6-eclipse-temurin-22 as builder
 WORKDIR /app
+
+# Configurar codificación UTF-8 para Maven
+ENV MAVEN_OPTS="-Dfile.encoding=UTF-8"
+ENV JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF-8"
+
 COPY . .
 RUN mvn clean package -DskipTests
 
 FROM eclipse-temurin:22-jdk
+
+# Configurar codificación UTF-8 para Java
+ENV JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF-8"
 
 WORKDIR /app
 
