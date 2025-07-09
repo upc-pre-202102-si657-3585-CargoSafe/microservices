@@ -26,7 +26,8 @@ public class CreateRequestServiceCommandFromResourceAssembler {
                 resource.destinationLat(),
                 resource.destinationLng(),
                 resource.loadDetail(),
-                resource.weight()
+                resource.weight(),
+                resource.userId()
         );
     }
 }

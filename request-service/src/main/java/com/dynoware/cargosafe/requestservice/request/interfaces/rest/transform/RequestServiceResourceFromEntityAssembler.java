@@ -27,7 +27,8 @@ public class RequestServiceResourceFromEntityAssembler {
                 entity.getDestinationLat(),
                 entity.getDestinationLng(),
                 entity.getLoadDetail(),
-                entity.getWeight()
+                entity.getWeight(),
+                entity.getUserId()
         );
     }
 }

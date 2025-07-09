@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface RequestServiceQueryService {
     Optional<RequestService> handle(GetRequestServiceByIdQuery query);
     List<RequestService> handle(GetAllRequestServiceQuery query);
+    List<RequestService> handleByUserId(Long userId);
 }
