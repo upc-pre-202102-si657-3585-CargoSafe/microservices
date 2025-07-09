@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -60,7 +61,7 @@ public class VehicleController {
             @ApiResponse(responseCode = "201", description = "Vehicle created successfully."),
             @ApiResponse(responseCode = "500", description = "Internal server error.")
     })
-    public ResponseEntity<VehicleResource> createVehicle(@RequestBody CreateVehicleResource resource) {
+    public ResponseEntity<VehicleResource> createVehicle(@Valid @RequestBody CreateVehicleResource resource) {
         var createVehicleCommand = CreateVehicleCommandFromResourceAssembler.toCommandFromResource(resource);
         vehicleCommandService.createVehicle(createVehicleCommand);
         var vehicle = vehicleRepository.findByModel(createVehicleCommand.model());
